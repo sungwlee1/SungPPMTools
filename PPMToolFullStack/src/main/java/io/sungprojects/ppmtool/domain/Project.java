@@ -1,4 +1,4 @@
-package domain;
+package io.sungprojects.ppmtool.domain;
 
 import javax.persistence.*;
 import java.util.Date;
