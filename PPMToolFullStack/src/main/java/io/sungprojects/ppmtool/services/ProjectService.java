@@ -18,7 +18,7 @@ public class ProjectService {
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
             return projectRepository.save(project);
         } catch (Exception e){
-            throw new ProjectIdException("Project ID '"+project.getProjectIdentifier().toUpperCase()+"' already exists");
+            throw new ProjectIdException("Project ID '"+ project.getProjectIdentifier().toUpperCase() + "' already exists");
         }
 
     }
@@ -32,6 +32,11 @@ public class ProjectService {
         }
 
         return project;
+    }
+
+    //Using Iterable to extract list whilie traversing the list
+    public Iterable<Project> findAllProjects(){
+        return projectRepository.findAll();
     }
 
 }
