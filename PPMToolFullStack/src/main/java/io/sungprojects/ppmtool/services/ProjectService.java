@@ -18,7 +18,7 @@ public class ProjectService {
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
             return projectRepository.save(project);
         } catch (Exception e){
-            throw new ProjectIdException("Project ID '"+project.getProjectIdentifier().toUpperCase()+"' already exists");
+            throw new ProjectIdException("Project ID '"+ project.getProjectIdentifier().toUpperCase() + "' already exists");
         }
 
     }
@@ -40,6 +40,7 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+
     public void deleteProjectByIdentifier(String projectId) {
         Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
 
@@ -49,5 +50,6 @@ public class ProjectService {
 
         projectRepository.delete(project);
     }
+
 
 }
