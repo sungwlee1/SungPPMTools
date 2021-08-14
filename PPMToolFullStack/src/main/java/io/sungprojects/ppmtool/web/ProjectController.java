@@ -30,9 +30,9 @@ public class ProjectController {
 
         //Create a response better for React using maps
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap!=null) return errorMap;
+        if (errorMap != null) return errorMap;
 
-        Project project1 = projectService.saveOrUpdate(project);
-        return new ResponseEntity<Project>(project, HttpStatus.CREATED);
+        Project project1 = projectService.saveOrUpdateProject(project);
+        return new ResponseEntity<Project>(project1, HttpStatus.CREATED);
     }
 }
