@@ -2,13 +2,7 @@ package io.sungprojects.ppmtool.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -22,29 +16,19 @@ public class Project {
     @NotBlank(message = "Project name is required")
     private String projectName;
     @NotBlank(message = "Project Identifier is required")
-    @Size(min=4, max=250, message ="Please use 4 to 250 characters")
+    @Size(min = 4, max = 5, message = "Please use 4 to 5 characters")
     @Column(updatable = false, unique = true)
     private String projectIdentifier;
     @NotBlank(message = "Project description is required")
     private String description;
-    @JsonFormat(pattern="yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date start_date;
-    @JsonFormat(pattern="yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date end_date;
-    @JsonFormat(pattern="yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_At;
-    @JsonFormat(pattern="yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
-
-    @PrePersist
-    protected void onCreate() { // everytime we create new object, a new object is going to store the date
-        this.created_At = new Date();
-    }
-
-    @PreUpdate
-    protected void onUpdate() { // everytime we update the object, it's going to store date in which object was updated
-        this.updated_At = new Date();
-    }
 
     public Project() {
 
@@ -112,5 +96,15 @@ public class Project {
 
     public void setUpdated_At(Date updated_At) {
         this.updated_At = updated_At;
+    }
+
+    @PrePersist
+    protected void onCreate() { // everytime we create new object, a new object is going to store the date
+        this.created_At = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() { // everytime we update the object, it's going to store date in which object was updated
+        this.updated_At = new Date();
     }
 }
